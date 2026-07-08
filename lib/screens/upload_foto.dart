@@ -35,6 +35,7 @@ class _UploadFotoState extends State<UploadFoto> {
         });
       }
     } catch (e) {
+      if (!mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Gagal mengambil gambar: $e')));
@@ -157,13 +158,13 @@ class _UploadFotoState extends State<UploadFoto> {
                                 Icon(
                                   Icons.add_a_photo_outlined,
                                   size: 50,
-                                  color: const Color.fromARGB(255, 255, 183, 0),
+                                  color: Color.fromARGB(255, 255, 183, 0),
                                 ),
                                 SizedBox(height: 12),
                                 Text(
                                   'Ketuk untuk Tambah Foto',
                                   style: TextStyle(
-                                    color: const Color.fromARGB(
+                                    color: Color.fromARGB(
                                       255,
                                       255,
                                       183,
@@ -263,9 +264,9 @@ class _UploadFotoState extends State<UploadFoto> {
         child: Wrap(
           children: [
             ListTile(
-              leading: const Icon(
+              leading: Icon(
                 Icons.camera_alt,
-                color: const Color.fromARGB(255, 255, 183, 0),
+                color: Color.fromARGB(255, 255, 183, 0),
               ),
               title: const Text('Kamera (Ambil Foto Langsung)'),
               onTap: () {
@@ -274,9 +275,9 @@ class _UploadFotoState extends State<UploadFoto> {
               },
             ),
             ListTile(
-              leading: const Icon(
+              leading: Icon(
                 Icons.photo_library,
-                color: const Color.fromARGB(255, 255, 183, 0),
+                color: Color.fromARGB(255, 255, 183, 0),
               ),
               title: const Text('Galeri (Pilih dari HP)'),
               onTap: () {

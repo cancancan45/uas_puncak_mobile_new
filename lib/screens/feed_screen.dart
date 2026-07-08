@@ -114,7 +114,7 @@ class _FeedScreenState extends State<FeedScreen> {
                               Image.network(
                                 post.imageUrl,
                                 fit: BoxFit.cover,
-                                errorBuilder: (_, __, ___) =>
+                                errorBuilder: (context, error, stackTrace) =>
                                     Container(color: Colors.grey),
                               ),
                               Positioned(
@@ -207,7 +207,7 @@ class _BlurDetailDialogState extends State<BlurDetailDialog> {
                 Image.network(
                   widget.post.imageUrl,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) =>
+                  errorBuilder: (context, error, stackTrace) =>
                       Container(color: Colors.grey.shade900),
                 ),
                 AnimatedOpacity(
@@ -301,11 +301,13 @@ class _BlurDetailDialogState extends State<BlurDetailDialog> {
                                     size: 28,
                                   ),
                                   onPressed: () async {
+                                    final nav = Navigator.of(context);
                                     bool success = await DataService.deletePost(
                                       widget.post.id,
                                     );
-                                    if (success && mounted) {
-                                      Navigator.pop(context, true);
+                                    if (!mounted) return;
+                                    if (success) {
+                                      nav.pop(true);
                                     }
                                   },
                                 ),

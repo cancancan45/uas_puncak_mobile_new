@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'feed_screen.dart';
 import 'mountain_screen.dart';
+import 'profile_screen.dart'; // Import halaman profil baru
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -13,10 +14,11 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
 
-  // Daftar halaman yang akan ditampilkan saat tab diklik
+  // Daftar halaman yang akan ditampilkan saat tab diklik (3 Tab)
   final List<Widget> _screens = [
     const FeedScreen(),
-    const MountainScreen(), // Kita siapkan file ini di langkah 2
+    const MountainScreen(),
+    const ProfileScreen(), // Halaman profil pendaki
   ];
 
   void _onItemTapped(int index) {
@@ -82,6 +84,17 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 ),
                 label: 'Mount',
               ),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: EdgeInsets.only(bottom: 4.0),
+                  child: Icon(Icons.person_outline), // Icon profil
+                ),
+                activeIcon: Padding(
+                  padding: EdgeInsets.only(bottom: 4.0),
+                  child: Icon(Icons.person),
+                ),
+                label: 'Profil',
+              ),
             ],
           ),
         ),
@@ -89,3 +102,4 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     );
   }
 }
+
